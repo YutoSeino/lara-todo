@@ -47,6 +47,9 @@
                       <a class="dropdown-item" href="{{ route('user.show', ['id' => Auth::user()->id]) }}">
                           プロフィール
                       </a>
+                      <a class="dropdown-item" href="{{ route('task.store', ['id' => Auth::user()->id]) }}">
+                          課題管理
+                      </a>
                   </div>
               </li>
           @endguest
