@@ -15,10 +15,7 @@ class TaskController extends Controller
     }
 
     public function store() {
-        $user_id = Auth::id();
-        $tags = Tag::where('user_id', $user_id)->get();
-        $tasks = $this->task->where('user_id', $user_id)->get();
-        return view('tasks.store', ['tags' => $tags, 'tasks' => $tasks]);
+        return view('tasks.store');
     }
 
     public function create(Request $request) {
@@ -38,5 +35,20 @@ class TaskController extends Controller
         ]);
         
         return redirect()->route('task.store', ['id' => Auth::user()->id]);
+    }
+
+    public function edit($id) {
+        $user_id = Auth::id();
+
+        $task = Task::where('id', $id)->where('user_id', $user_id)->first();
+
+        return view('tasks.edit', ['task' => $task]);
+    }
+
+    public function update(Request $request, $id) {
+        $data = $request->all();
+        // dd($data);
+        Task::where('id', $id)->update(['name' => $request['name'], 'content' => $request['content'], 'tag_id' => $request['tag_id']]);
+        return redirect()->route('task.edit', ['id' => $id]);
     }
 }
