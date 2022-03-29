@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Tag;
+use App\Models\Timer;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -41,14 +42,25 @@ class TaskController extends Controller
         $user_id = Auth::id();
 
         $task = Task::where('id', $id)->where('user_id', $user_id)->first();
-
-        return view('tasks.edit', ['task' => $task]);
+        $timer = Timer::where('id', $task['timer_id'])->first();
+        return view('tasks.edit', ['task' => $task, 'timer' => $timer]);
     }
 
     public function update(Request $request, $id) {
         $data = $request->all();
-        // dd($data);
-        Task::where('id', $id)->update(['name' => $request['name'], 'content' => $request['content'], 'tag_id' => $request['tag_id']]);
+        $exist_timer = Task::where('timer_id', $data['timer_id'])->where('id', $id)->first();
+        if (empty($exist_timer['timer_id'])) {
+            $timer = Timer::create([
+                'time' => $data['time'],
+                'elapsed_time' => $data['elapsed_time'],
+                'user_id' => Auth::id()
+            ]);
+            $timer_id = $timer['id'];
+        } else {
+            $timer = Timer::where('id', $data['timer_id'])->update(['time' => $data['time'], 'elapsed_time' => $data['elapsed_time']]);
+            $timer_id = $exist_timer['timer_id'];
+        }
+        Task::where('id', $id)->update(['name' => $data['name'], 'content' => $data['content'], 'tag_id' => $data['tag_id'], 'timer_id' => $timer_id]);
         return redirect()->route('task.edit', ['id' => $id]);
     }
 }

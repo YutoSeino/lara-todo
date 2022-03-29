@@ -15,6 +15,7 @@ class AddTagIdToTasksTable extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
             $table->bigInteger('tag_id')->nullable()->after('user_id');
+            $table->bigInteger('timer_id')->nullable()->after('tag_id');
         });
     }
 
@@ -27,6 +28,7 @@ class AddTagIdToTasksTable extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
             $table->dropColumn('tag_id');
+            $table->dropColumn('timer_id');
         });
     }
 }
