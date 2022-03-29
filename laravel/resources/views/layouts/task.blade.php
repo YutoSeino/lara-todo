@@ -7,6 +7,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/timer.js') }}" defer></script>
     @stack('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
