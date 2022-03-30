@@ -1,0 +1,1 @@
+<?php include_once("static_page.blade.php"); ?>
