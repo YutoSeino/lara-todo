@@ -34,10 +34,31 @@
           <div class="col-md-4 p-0">
             <div class="card h-100">
               <div class="card-header d-flex justify-content-between">課題一覧 <a class='ml-auto' href="{{ route('task.store', ['id' => Auth::user()->id]) }}">新規作成</a></div>
-              <div class="card-body p-2">
-              @foreach($tasks as $task)
-                <a href="/task/{{ $task->id }}/edit" class='d-block'>{{ $task->name }}</a>
-              @endforeach
+              <div class="card-body p-2 d-flex flex-column bd-highlight mb-3">
+                <div class="flex-fill border p-2">
+                  <h4>進行状況：未着手</h4>
+                    @foreach($tasks as $task)
+                      @if($task->status == 1)
+                        <a href="/task/{{ $task->id }}/edit" class='d-block'>{{ $task->name }}</a>
+                      @endif
+                    @endforeach
+                </div>
+                <div class="flex-fill border p-2">
+                  <h4>進行状況：進行中</h4>
+                    @foreach($tasks as $task)
+                      @if($task->status == 2)
+                        <a href="/task/{{ $task->id }}/edit" class='d-block'>{{ $task->name }}</a>
+                      @endif
+                    @endforeach
+                </div>
+                <div class="flex-fill border p-2">
+                  <h4>進行状況：完了</h4>
+                    @foreach($tasks as $task)
+                      @if($task->status == 3)
+                        <a href="/task/{{ $task->id }}/edit" class='d-block'>{{ $task->name }}</a>
+                      @endif
+                  @endforeach
+                </div>
               </div>
             </div>    
           </div> <!-- col-md-3 -->
