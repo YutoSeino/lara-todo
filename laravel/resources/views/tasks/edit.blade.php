@@ -40,10 +40,29 @@
                 <div class="form-group">
                   <label for="tag">タグ</label>
                   <select class='form-control' name='tag_id'>
-                @foreach($tags as $tag)
-                <option value="{{ $tag['id'] }}" {{ $tag['id'] == $task['tag_id'] ? "selected" : "" }}>{{$tag['name']}}</option>
-                @endforeach
-                    </select>
+                    @foreach($tags as $tag)
+                      <option value="{{ $tag['id'] }}" {{ $tag['id'] == $task['tag_id'] ? "selected" : "" }}>{{$tag['name']}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="tag">進行状況</label>
+                  <br>
+                  <div class="p-2">
+                    <label>
+                      <input type="radio" id="status_1" name="status" value="1" {{ $task['status'] == 1 ? 'checked' : '' }}>
+                      未着手
+                    </label>
+                    <label>
+                      <input type="radio" id="status_2" name="status" value="2" {{ $task['status'] == 2 ? 'checked' : '' }}>
+                      進行中
+                    </label>
+                    <label>
+                      <input type="radio" id="status_3" name="status" value="3" {{ $task['status'] == 3 ? 'checked' : '' }}>
+                      完了
+                    </label>
+                  </div>
                 </div>
                 <br>
                 <button type='submit' id="submit" class="btn btn-primary btn-lg">更新</button>
