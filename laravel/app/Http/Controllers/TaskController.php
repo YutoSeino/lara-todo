@@ -48,6 +48,7 @@ class TaskController extends Controller
 
     public function update(Request $request, $id) {
         $data = $request->all();
+        // dd($data);
         $exist_timer = Task::where('timer_id', $data['timer_id'])->where('id', $id)->first();
         if (empty($exist_timer['timer_id'])) {
             $timer = Timer::create([
@@ -60,7 +61,7 @@ class TaskController extends Controller
             $timer = Timer::where('id', $data['timer_id'])->update(['time' => $data['time'], 'elapsed_time' => $data['elapsed_time']]);
             $timer_id = $exist_timer['timer_id'];
         }
-        Task::where('id', $id)->update(['name' => $data['name'], 'content' => $data['content'], 'tag_id' => $data['tag_id'], 'timer_id' => $timer_id]);
+        Task::where('id', $id)->update(['name' => $data['name'], 'content' => $data['content'], 'status' => $data['status'], 'tag_id' => $data['tag_id'], 'timer_id' => $timer_id]);
         return redirect()->route('task.edit', ['id' => $id]);
     }
 }

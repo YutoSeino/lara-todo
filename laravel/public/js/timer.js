@@ -11,6 +11,7 @@
   var stop = document.getElementById('stop');
   var reset = document.getElementById('reset');
   var submit = document.getElementById('submit');
+  var status = document.getElementById('status_2');
 
   //クリック時の時間を保持するための変数定義
   var startTime;
@@ -83,12 +84,13 @@
     stop.disabled = false;
     reset.disabled = true;
     submit.disabled = true;
+    status.checked = true;
     // console.log(exit_timer_t);
 
     //在時刻を示すDate.nowを代入
     startTime = Date.now();
     exit_timer_t = Number(timer_t.value);
-    console.log(timer_t.value);
+    // console.log(timer_t.value);
 
     //再帰的に使えるように関数を作る
     countUp();
