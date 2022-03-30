@@ -7,18 +7,18 @@
         <div class="card-body">
             <form method='POST' action="{{ route('task.update', ['id' => $task->id]) }}">
                 @csrf
-                <input type="text" name="timer_id" value="{{ $task->timer_id }}">
+                <input type="hidden" name="timer_id" value="{{ $task->timer_id }}">
                 <div class="form-group">
                   <div class="container-fluid p-0">
                     <label for="tag">取り組み時間</label>
                     @if($timer == null)
                       <p id="timer" class="def_timer" style="font-size: 20px;">00:00:00:00</p>
-                      <input type="text" name="time" id="timer_hidden" class="def_timer" value="0">
-                      <input type="text" name='elapsed_time' id="elapsed_time" class="def_timer">
+                      <input type="hidden" name="time" id="timer_hidden" class="def_timer" value="0">
+                      <input type="hidden" name='elapsed_time' id="elapsed_time" class="def_timer">
                     @else
                       <p id="timer" class="def_timer" style="font-size: 20px;">{{ $timer->time }}</p>
-                      <input type="text" name="time" id="timer_hidden" class="def_timer" value="{{ $timer->time }}">
-                      <input type="text" name='elapsed_time' id="elapsed_time" class="def_timer" value="{{ $timer->elapsed_time }}">
+                      <input type="hidden" name="time" id="timer_hidden" class="def_timer" value="{{ $timer->time }}">
+                      <input type="hidden" name='elapsed_time' id="elapsed_time" class="def_timer" value="{{ $timer->elapsed_time }}">
                     @endif
                     <button type="button" id="start" class="btn btn-primary">Start</button>
                     <button type="button" id="stop" class="btn btn-danger">Stop</button>

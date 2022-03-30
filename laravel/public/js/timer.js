@@ -7,7 +7,6 @@
   var timer = document.getElementById('timer');
   var timer_h = document.getElementById('timer_hidden');
   var timer_t = document.getElementById('elapsed_time');
-  var exit_timer_t = Number(timer_t.value);
   var start = document.getElementById('start');
   var stop = document.getElementById('stop');
   var reset = document.getElementById('reset');
@@ -24,6 +23,8 @@
 
   //タイマーをストップ -> 再開させたら0になってしまうのを避けるための変数。
   var timeToadd = 0;
+
+  var exit_timer_t;
 
   stop.disabled = true;
   reset.disabled = true;
@@ -82,10 +83,12 @@
     stop.disabled = false;
     reset.disabled = true;
     submit.disabled = true;
-    console.log(exit_timer_t);
+    // console.log(exit_timer_t);
 
     //在時刻を示すDate.nowを代入
     startTime = Date.now();
+    exit_timer_t = Number(timer_t.value);
+    console.log(timer_t.value);
 
     //再帰的に使えるように関数を作る
     countUp();
