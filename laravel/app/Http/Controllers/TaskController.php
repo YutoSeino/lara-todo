@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Tag;
+use App\Models\Calendar;
 use App\Models\Timer;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,10 +29,19 @@ class TaskController extends Controller
         }else{
             $tag_id = $exist_tag['id'];
         }
+        // dd($tag_id);
+        $calendar = Calendar::create([
+            'start_date' => $data['start_date'],
+            'end_date' => $data['end_date'],
+            'event_name' => $data['name'],
+            'user_id' => $data['user_id']
+        ]);
+        // dd($calendar->id);
         $task = $this->task->create([
             'name' => $data['name'],
             'content' => $data['content'],
             'user_id' => $data['user_id'],
+            'calendar_id' => $calendar->id,
             'tag_id' => $tag_id,
         ]);
         
@@ -43,7 +53,8 @@ class TaskController extends Controller
 
         $task = Task::where('id', $id)->where('user_id', $user_id)->first();
         $timer = Timer::where('id', $task['timer_id'])->first();
-        return view('tasks.edit', ['task' => $task, 'timer' => $timer]);
+        $event = Calendar::where('id', $task['calendar_id'])->first();
+        return view('tasks.edit', ['task' => $task, 'timer' => $timer, 'event' => $event]);
     }
 
     public function update(Request $request, $id) {
@@ -62,6 +73,7 @@ class TaskController extends Controller
             $timer_id = $exist_timer['timer_id'];
         }
         Task::where('id', $id)->update(['name' => $data['name'], 'content' => $data['content'], 'status' => $data['status'], 'tag_id' => $data['tag_id'], 'timer_id' => $timer_id]);
+        Calendar::where('id', $data['calendar_id'])->update(['start_date' => $data['start_date'], 'end_date' => $data['end_date']]);
         return redirect()->route('task.edit', ['id' => $id]);
     }
 }

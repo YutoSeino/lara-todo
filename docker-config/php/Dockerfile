@@ -6,7 +6,7 @@ RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/
 
 # install packages
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install -y libicu-dev \
     git \
     zip \
     unzip \
@@ -17,7 +17,9 @@ RUN apt-get update \
     libfreetype6-dev \
     libjpeg-dev \
     libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql mysqli zip
+    && docker-php-ext-install pdo pdo_mysql mysqli zip \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
 
 # install stable node and latest npm
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
