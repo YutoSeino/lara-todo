@@ -14,6 +14,7 @@ class Task extends Model
         'name',
         'user_id',
         'tag_id',
+        'calendar_id',
         'content',
     ];
 

@@ -8,6 +8,7 @@
             <form method='POST' action="{{ route('task.update', ['id' => $task->id]) }}">
                 @csrf
                 <input type="hidden" name="timer_id" value="{{ $task->timer_id }}">
+                <input type="hidden" name="calendar_id" value="{{ $task->calendar_id }}">
                 <div class="form-group">
                   <div class="container-fluid p-0">
                     <label for="tag">取り組み時間</label>
@@ -63,6 +64,13 @@
                       完了
                     </label>
                   </div>
+                </div>
+                <br>
+                <div class="form-grop">
+                  <label for="tag">締め切り</label>
+                  <input type="datetime-local" id="start" name="start_date" value="{{ date('Y-m-d\TH:i', strtotime($event->start_date)) }}">
+                  ~
+                  <input type="datetime-local" id="end" name="end_date" value="{{ date('Y-m-d\TH:i', strtotime($event->end_date)) }}">
                 </div>
                 <br>
                 <button type='submit' id="submit" class="btn btn-primary btn-lg">更新</button>
