@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/task/create', [TaskController::class, 'create'])->name('task.create');
     Route::get('/task/{id}/edit', [TaskController::class, 'edit'])->name('task.edit');
     Route::post('/task/{id}/update', [TaskController::class, 'update'])->name('task.update');
+
+    // Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar.show');
+    Route::get('/event-get', [CalendarController::class, 'EventGet']);
+    Route::get('/calendar',  [CalendarController::class, 'show'])->name('calendars.show');
 });

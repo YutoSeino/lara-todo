@@ -50,6 +50,9 @@
                       <a class="dropdown-item" href="{{ route('task.store', ['id' => Auth::user()->id]) }}">
                           課題管理
                       </a>
+                      <a class="dropdown-item" href="/calendar">
+                          予定表
+                      </a>
                   </div>
               </li>
           @endguest
