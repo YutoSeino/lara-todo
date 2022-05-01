@@ -25,9 +25,9 @@
                 <br>
                 <div class="form-grop">
                   <label for="tag">締め切り</label>
-                  <input type="date" id="start" name="start_date" value="today">
+                  <input type="datetime-local" id="start" name="start_date" value="today">
                   ~
-                  <input type="date" id="end" name="end_date">
+                  <input type="datetime-local" id="end" name="end_date">
                 </div>
                 <br>
                 <button type='submit' class="btn btn-primary btn-lg">保存</button>

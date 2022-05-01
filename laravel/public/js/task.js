@@ -4,5 +4,5 @@
     var yyyy = today.getFullYear();
     var mm = ("0"+(today.getMonth()+1)).slice(-2);
     var dd = ("0"+today.getDate()).slice(-2);
-    document.getElementById("start").value=yyyy+'-'+mm+'-'+dd; 
+    document.getElementById("start").value=yyyy+'-'+mm+'-'+dd+'T'+'00'+':'+'00'; 
 })();

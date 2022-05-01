@@ -14021,7 +14021,7 @@ document.addEventListener('DOMContentLoaded', function () {
       day: '日',
       list: 'リスト'
     },
-    events: '/event-get'
+    events: '/events-get'
   });
   calendar.render();
 });

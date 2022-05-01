@@ -13,7 +13,7 @@ class CalendarController extends Controller
         return view('calendars.show');
     }
 
-    public function EventGet(Request $request) {
+    public function EventGet() {
         $add_month = new Carbon('next month');
         $sub_month = new Carbon('last month');
        
