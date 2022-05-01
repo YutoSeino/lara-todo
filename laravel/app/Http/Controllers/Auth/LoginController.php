@@ -28,7 +28,7 @@ class LoginController extends Controller
      */
     // protected $redirectTo = '/home';
 
-    public function redirectTo() {
+    public function redirectPath() {
         $user = Auth::user();
         return route('user.show',
         [
