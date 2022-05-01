@@ -65,6 +65,9 @@
             "php": "8.0.17"
         }
     },
+    "compile": [
+        "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
