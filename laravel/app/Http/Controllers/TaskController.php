@@ -45,7 +45,7 @@ class TaskController extends Controller
             'tag_id' => $tag_id,
         ]);
         
-        return redirect()->route('task.store', ['id' => Auth::user()->id]);
+        return redirect()->route('task.store', ['id' => $task->user_id]);
     }
 
     public function edit($id) {

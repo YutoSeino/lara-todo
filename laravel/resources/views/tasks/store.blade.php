@@ -5,7 +5,7 @@
     <div class="card w-100">
         <div class="card-header">新規課題作成</div>
         <div class="card-body">
-            <form method='POST' action="/task/create">
+            <form method='POST' action="{{ route('task.create') }}">
                 @csrf
                 <div class="form-group">
                   <label for="tag">課題名</label>
