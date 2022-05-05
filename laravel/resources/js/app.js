@@ -7,7 +7,7 @@
 require('./bootstrap');
 // require("../../public/js/calendar");
 window.axios = require("axios");
-require("./calendar");
+// require("../../public/js/calendar");
 
 window.Vue = require('vue').default;
 

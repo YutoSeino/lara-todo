@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.calendar')
 
 @section('content')
 <div id='calendar'></div>

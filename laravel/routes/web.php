@@ -37,6 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/task/{id}/update', [TaskController::class, 'update'])->name('task.update');
 
     // Route::get('/calendar', [CalendarController::class, 'show'])->name('calendar.show');
-    Route::get('/event-get', [CalendarController::class, 'EventGet']);
+    Route::get('/events-get', [CalendarController::class, 'EventGet']);
     Route::get('/calendar',  [CalendarController::class, 'show'])->name('calendars.show');
 });
